@@ -98,7 +98,7 @@ function Courses() {
         </div>
       </section>
 
-      <section className="section-padding">
+      {/* <section className="section-padding">
         <div className="container-page">
           <h2 className="gold-underline font-serif text-3xl font-bold text-navy">Diploma Programmes</h2>
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -117,7 +117,7 @@ function Courses() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
     </>
   );
 }
