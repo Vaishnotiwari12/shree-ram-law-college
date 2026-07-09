@@ -44,7 +44,7 @@ export function HeroSlider() {
   const go = (d: number) => setI((v) => (v + d + n) % n);
 
   return (
-    <section className="relative isolate overflow-hidden">
+    <section className="relative isolate overflow-hidden bg-navy">
       <div className="relative h-[520px] w-full sm:h-[600px] lg:h-[680px]">
         {SLIDES.map((s, idx) => (
           <div
