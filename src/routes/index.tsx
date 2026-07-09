@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
 import {
   ArrowRight,
   BookOpen,
@@ -10,6 +11,12 @@ import {
   Users,
   MapPin,
   Quote,
+  Phone,
+  Mail,
+  Globe,
+  MessageCircle,
+  Send,
+  ChevronDown,
 } from "lucide-react";
 import books from "@/assets/law-books.jpg";
 import { HeroSlider } from "./../components/HeroSlider";
@@ -23,8 +30,7 @@ import { NoticesTicker } from "./../components/NoticesTicker";
 import { SITE } from "./../lib/site";
 
 export const Route = createFileRoute("/")({
- head: () => ({
-}),
+  head: () => ({}),
   component: Home,
 });
 
@@ -50,39 +56,57 @@ const courses = [
     text: "Five-year integrated programme combining arts foundations with legal specialisation.",
     to: "/courses",
   },
-  {
-    title: "Diplomas",
-    tag: "Specialisation",
-    text: "Diplomas in Cyber Law, Human Rights and Labour Law Management.",
-    to: "/courses",
-  },
 ];
 
+// Updated LEADERSHIP data with new titles and newly generated messages
 const LEADERSHIP = [
   {
     photo: chairmanPhoto,
-    name: "Manoj Singh Bhadauria",
-    role: "Chairman (Advocate)",
-    quote:
-      "I am confident that pursuing your higher legal education through Shree Ram Law College would be one of the most exciting and rewarding professional experiences of your life. The road to success has no milestone.",
+    name: "Mr. Manoj Bhadauria (Advocate)",
+    role: "Chairman",
+    eyebrow: "CHAIRMAN'S MESSAGE",
+    heading: "From The Chairman's Desk",
+    quote: [
+      "Welcome to Shree Ram Law College. We believe that education is the ultimate cornerstone of a thriving and just society. Our mission is to cultivate minds that are not only academically proficient but deeply rooted in integrity and discipline.",
+      "We are dedicated to providing a dynamic learning environment where future leaders can confidently hone their skills. With our exceptional faculty, rigorous academic standards, and modern infrastructure, we ensure that every student is equipped to navigate the complexities of the modern legal profession.",
+      "We aim to empower you to seek justice, uphold the truth, and lead with purpose. Your journey towards becoming a distinguished legal professional starts here, and we are committed to supporting you every step of the way."
+    ],
   },
   {
     photo: managerPhoto,
     name: "Vijay Laxmi Singh",
     role: "Manager",
-    quote:
-      "When you step into Shree Ram Law College, you become part of an institution that believes legal studies are the means to an end — lawyers have the power to transform society with their knowledge, skills and sense of purpose.",
+    eyebrow: "MANAGER'S MESSAGE",
+    heading: "From The Manager's Desk",
+    quote: [
+      "Law is much more than a career path; it is a profound societal responsibility. At Shree Ram Law College, we aim to nurture individuals who view their legal education as a powerful instrument for positive community change.",
+      "We focus on bridging the gap between theoretical knowledge and practical execution, ensuring our students are truly prepared for the real-world challenges of the judicial system. Our unwavering commitment is to foster an inclusive, disciplined, and forward-thinking campus culture.",
+      "When you step into our college, you are stepping into a future where your knowledge and voice can champion the rights of the unheard."
+    ],
   },
   {
     photo: principalPhoto,
     name: "Shiv Pratap Singh Raghav",
     role: "Principal — M.A., LLM, M.Phil, Ph.D",
-    quote:
-      "Shree Ram Law College aspires to strengthen the foundation of democratic values by encouraging research aimed at simplifying the language of law and legal procedure — so law becomes a real tool for the empowerment of people.",
+    eyebrow: "PRINCIPAL'S MESSAGE",
+    heading: "From The Principal's Desk",
+    quote: [
+      "As the Principal of Shree Ram Law College, it is my privilege to guide our students through a rigorous, comprehensive, and transformative academic curriculum.",
+      "We place a strong emphasis on critical analysis, extensive legal research, and the practical application of constitutional principles. Our core goal is to demystify complex legal frameworks and teach our students how to effectively use the law as a shield for the vulnerable.",
+      "We are committed to shaping not just highly competent lawyers, but ethical advocates who will uphold the dignity of the legal system, challenge injustices, and serve our nation with unwavering pride."
+    ],
   },
 ];
 
 function Home() {
+  const [form, setForm] = useState({ name: "", phone: "", message: "" });
+
+  const openWhatsApp = (e: React.FormEvent) => {
+    e.preventDefault();
+    const text = `Hello Shree Ram Law College,%0AName: ${encodeURIComponent(form.name)}%0APhone: ${encodeURIComponent(form.phone)}%0A%0A${encodeURIComponent(form.message)}`;
+    window.open(`https://wa.me/${SITE.whatsapp}?text=${text}`, "_blank");
+  };
+
   return (
     <>
       {/* HERO SLIDER */}
@@ -90,7 +114,6 @@ function Home() {
 
       {/* NOTICES TICKER */}
       <NoticesTicker />
-
 
       {/* MARQUEE / AFFILIATIONS */}
       <section className="border-y border-border bg-secondary/60">
@@ -133,59 +156,60 @@ function Home() {
       </section>
 
       {/* LEADERSHIP MESSAGES */}
-      <section className="bg-secondary/40 section-padding">
-        <div className="container-page">
+      <section className="bg-gray-50/50 section-padding py-16">
+        <div className="container-page max-w-6xl mx-auto">
           <SectionHeading
             center
             eyebrow="Voices"
             title="Message from Leadership"
             subtitle="Guiding wisdom from our Chairman, Manager & Principal."
           />
-          <div className="mt-14 space-y-16">
-            {LEADERSHIP.map((p, idx) => (
-              <article
+          <div className="mt-14 space-y-10">
+            {LEADERSHIP.map((p) => (
+              <div
                 key={p.name}
-                className="grid gap-8 md:grid-cols-[320px_1fr] md:gap-12 lg:grid-cols-[380px_1fr]"
+                className="bg-white rounded-[1.5rem] shadow-sm border border-gray-100 p-8 md:p-10 flex flex-col md:flex-row gap-8 lg:gap-12 transition hover:shadow-md"
               >
-                <div className={idx % 2 === 1 ? "md:order-2" : ""}>
-                  <div className="relative mx-auto w-full max-w-sm">
-                    <div className="absolute -inset-2 rounded-2xl bg-gold/30 blur-sm" aria-hidden />
-                    <div className="relative overflow-hidden rounded-2xl border-4 border-gold bg-card shadow-elegant">
-                      <img
-                        src={p.photo}
-                        alt={p.name}
-                        loading="lazy"
-                        className="aspect-[3/4] w-full object-cover object-top"
-                      />
-                    </div>
-                    <div className="mt-4 text-center">
-                      <div className="font-serif text-xl font-bold text-navy">{p.name}</div>
-                      <div className="mt-1 text-sm font-semibold uppercase tracking-wider text-gold">
-                        {p.role}
-                      </div>
-                    </div>
+                {/* Left Column: Photo & Name */}
+                <div className="flex flex-col items-center w-full md:w-[260px] shrink-0">
+                  <div className="rounded-2xl border-[3px] border-[#ff7a00] p-1 mb-5 overflow-hidden w-full max-w-[220px]">
+                    <img
+                      src={p.photo}
+                      alt={p.name}
+                      loading="lazy"
+                      className="w-full aspect-square object-cover object-top rounded-xl bg-gray-100"
+                    />
                   </div>
+                  <h4 className="text-[#990000] font-bold text-[1.1rem] text-center leading-snug">
+                    {p.name}
+                  </h4>
+                  <p className="text-gray-500 text-sm text-center mt-1.5">{p.role}</p>
                 </div>
-                <div className="flex flex-col justify-center">
-                  <div className="text-xs font-semibold uppercase tracking-[0.25em] text-gold">
-                    Message from {p.role.split("—")[0].split("(")[0].trim()}
+
+                {/* Right Column: Message Content */}
+                <div className="flex-1 flex flex-col justify-center">
+                  <div className="text-[#ff7a00] text-xs font-extrabold uppercase tracking-widest mb-3">
+                    {p.eyebrow}
                   </div>
-                  <h3 className="mt-3 font-serif text-3xl font-bold text-navy sm:text-4xl">
-                    <span className="gold-underline">{p.name}</span>
+                  <h3 className="text-[#0b132b] text-3xl md:text-4xl font-bold mb-6 tracking-tight">
+                    {p.heading}
                   </h3>
-                  <Quote className="mt-6 h-10 w-10 text-gold" />
-                  <p className="mt-3 text-base leading-relaxed text-foreground/85 sm:text-lg">
-                    {p.quote}
-                  </p>
-                  <div className="mt-6 text-sm font-semibold text-navy">— {p.name}</div>
+                  <div className="text-gray-600 text-[15px] leading-[1.8] space-y-3">
+                    {p.quote.map((paragraph, i) => (
+                      <p key={i}>{paragraph}</p>
+                    ))}
+                  </div>
+                  <div className="mt-8">
+                    <button className="inline-flex items-center gap-1.5 text-sm font-medium text-[#db4a4a] border border-[#db4a4a]/40 rounded-full px-5 py-2 hover:bg-red-50 hover:border-[#db4a4a] transition-all duration-200">
+                      Read More <ChevronDown size={16} />
+                    </button>
+                  </div>
                 </div>
-              </article>
+              </div>
             ))}
           </div>
         </div>
       </section>
-
-
 
       {/* COURSES */}
       <section className="section-padding">
@@ -274,14 +298,128 @@ function Home() {
                 >
                   Apply Now <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link
-                  to="/contact"
+                <a
+                  href="#contact-section"
                   className="inline-flex items-center rounded-md border border-navy/20 px-6 py-3 text-sm font-semibold text-navy transition hover:bg-secondary"
                 >
                   Contact Office
-                </Link>
+                </a>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CONTACT SECTION */}
+      <section id="contact-section" className="section-padding bg-secondary/30">
+        <div className="container-page">
+          <SectionHeading
+            center
+            eyebrow="Contact Us"
+            title="Get in touch with us"
+            subtitle="Reach out for admissions, campus visits, or any general query. We usually respond within a day."
+          />
+          <div className="mt-12 grid gap-8 lg:grid-cols-2">
+            <div className="space-y-4">
+              {[
+                { icon: MapPin, title: "Address", value: SITE.address },
+                { icon: Phone, title: "Phone", value: SITE.phones.join("  •  ") },
+                { icon: Mail, title: "Email", value: SITE.email, href: `mailto:${SITE.email}` },
+                { icon: Globe, title: "Website", value: SITE.website },
+              ].map((c) => (
+                <div key={c.title} className="flex gap-4 rounded-xl border border-border bg-card p-5">
+                  <div className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-navy text-gold">
+                    <c.icon className="h-5 w-5" />
+                  </div>
+                  <div className="min-w-0">
+                    <div className="text-xs font-semibold uppercase tracking-widest text-gold">
+                      {c.title}
+                    </div>
+                    {c.href ? (
+                      <a href={c.href} className="mt-1 block break-words text-navy hover:underline">
+                        {c.value}
+                      </a>
+                    ) : (
+                      <div className="mt-1 break-words text-foreground/85">{c.value}</div>
+                    )}
+                  </div>
+                </div>
+              ))}
+
+              <a
+                href={`https://wa.me/${SITE.whatsapp}`}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-[#25D366] px-4 py-3 text-sm font-semibold text-white transition hover:brightness-105"
+              >
+                <MessageCircle className="h-4 w-4" /> Chat on WhatsApp
+              </a>
+            </div>
+
+            <form
+              onSubmit={openWhatsApp}
+              className="rounded-2xl border border-border bg-card p-6 shadow-elegant"
+            >
+              <h3 className="font-serif text-2xl font-bold text-navy">Send us a message</h3>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Fill in your details — we'll continue the conversation on WhatsApp.
+              </p>
+
+              <div className="mt-5 space-y-4">
+                <div>
+                  <label className="text-xs font-semibold uppercase tracking-widest text-navy">Full Name</label>
+                  <input
+                    required
+                    value={form.name}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2.5 text-sm outline-none ring-ring/20 transition focus:border-gold focus:ring-2"
+                    placeholder="Your name"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs font-semibold uppercase tracking-widest text-navy">Phone</label>
+                  <input
+                    required
+                    value={form.phone}
+                    onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                    className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2.5 text-sm outline-none ring-ring/20 transition focus:border-gold focus:ring-2"
+                    placeholder="+91"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs font-semibold uppercase tracking-widest text-navy">Message</label>
+                  <textarea
+                    required
+                    rows={4}
+                    value={form.message}
+                    onChange={(e) => setForm({ ...form, message: e.target.value })}
+                    className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2.5 text-sm outline-none ring-ring/20 transition focus:border-gold focus:ring-2"
+                    placeholder="How can we help?"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-navy px-4 py-3 text-sm font-semibold text-navy-foreground transition hover:bg-navy/90"
+                >
+                  <Send className="h-4 w-4" /> Send via WhatsApp
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      {/* MAP SECTION */}
+      <section className="pb-20 bg-secondary/30">
+        <div className="container-page">
+          <div className="overflow-hidden rounded-2xl border border-border shadow-elegant">
+            <iframe
+              title="Shree Ram Law College location"
+              src="https://www.google.com/maps?q=Nandana,+Ghatampur,+Kanpur&output=embed"
+              className="h-[420px] w-full"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
         </div>
       </section>
