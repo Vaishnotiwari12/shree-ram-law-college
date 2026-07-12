@@ -1,0 +1,1 @@
+var e=`/assets/students-DBu-6F03.jpg`;export{e as t};

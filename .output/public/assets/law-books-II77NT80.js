@@ -1,0 +1,1 @@
+var e=`/assets/moot-court-CJO6Vydg.jpg`,t=`/assets/law-books-Bjft34oa.jpg`;export{e as n,t};
