@@ -1,10 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "../components/PageHero";
 import { SectionHeading } from "../components/SectionHeading";
-import hero from "./../assets/hero-college.jpg";
+import hero from "./../assets/college-photo.jpeg";
 import moot from "./../assets/moot-court.jpg";
 import students from "./../assets/students.jpg";
+import Classroom  from "./../assets/Reading-Hall.jpeg";
+import hero1 from "./../assets/college-photo2.jpeg";
 import books from "./../assets/law-books.jpg";
+import Classroom1  from "./../assets/Reading-Hall2.jpeg";
+
+import Classroom2  from "./../assets/Reading-Hall3.jpeg";
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
@@ -23,10 +28,13 @@ const IMAGES = [
   { src: moot, caption: "Moot Court Room" },
   { src: students, caption: "Student Life" },
   { src: books, caption: "Legal Library" },
-  { src: hero, caption: "College Building" },
-  { src: moot, caption: "Advocacy Training" },
-  { src: students, caption: "Classroom Session" },
-  { src: books, caption: "Reading Hall" },
+  { src: hero1, caption: "College Building" },
+  { src: moot, caption: "Advocacy Training" },    
+ 
+ 
+   { src:Classroom, caption: "Classroom Session " },
+   { src:Classroom1, caption: "Classroom Session " },
+   { src:Classroom2, caption: "Classroom Session " },
 ];
 
 function Gallery() {
@@ -48,6 +56,7 @@ function Gallery() {
           </div>
         </div>
       </section>
+
     </>
   );
 }
