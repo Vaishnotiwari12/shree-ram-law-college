@@ -5,7 +5,7 @@ import hero from "./../assets/college-photo.jpg";
 import moot from "./../assets/moot-court.jpg";
 import students from "./../assets/students.jpg";
 import Classroom  from "./../assets/reading-hall.jpg";
-import hero1 from "./../assets/college-photo2.jpg";
+import hero1 from "./../assets/collegeimage.jpeg";
 import books from "./../assets/law-books.jpg";
 import Classroom1  from "./../assets/reading-hall2.jpg";
 
