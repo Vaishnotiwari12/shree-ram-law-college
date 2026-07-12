@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import hero from "./../assets/College-photo.jpeg";
+import hero from "./../assets/College-photo.jpg";
 import moot from "./../assets/moot-court.jpg";
 import students from "./../assets/students.jpg";
 import books from "./../assets/law-books.jpg";

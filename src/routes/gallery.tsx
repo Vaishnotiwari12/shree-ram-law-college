@@ -1,15 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "../components/PageHero";
 import { SectionHeading } from "../components/SectionHeading";
-import hero from "./../assets/college-photo.jpeg";
+import hero from "./../assets/college-photo.jpg";
 import moot from "./../assets/moot-court.jpg";
 import students from "./../assets/students.jpg";
-import Classroom  from "./../assets/Reading-Hall.jpeg";
-import hero1 from "./../assets/college-photo2.jpeg";
+import Classroom  from "./../assets/reading-hall.jpg";
+import hero1 from "./../assets/college-photo2.jpg";
 import books from "./../assets/law-books.jpg";
-import Classroom1  from "./../assets/Reading-Hall2.jpeg";
+import Classroom1  from "./../assets/reading-hall2.jpg";
 
-import Classroom2  from "./../assets/Reading-Hall3.jpeg";
+import Classroom2  from "./../assets/reading-hall3.jpg";
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
