@@ -36,7 +36,8 @@ A modern, responsive, and production-ready web application built with the latest
 - ESLint
 - Prettier
 - Git
-- npm
+- npm run build
+-- npm run dev
 
 ---
 
