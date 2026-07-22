@@ -10,7 +10,6 @@ import {
   ShieldCheck,
   Users,
   MapPin,
-  Quote,
   Phone,
   Mail,
   Globe,
@@ -58,7 +57,6 @@ const courses = [
   },
 ];
 
-// Updated LEADERSHIP data with new titles and newly generated messages
 const LEADERSHIP = [
   {
     photo: chairmanPhoto,
@@ -69,6 +67,7 @@ const LEADERSHIP = [
     quote: [
       "Welcome to Shree Ram Law College. We believe that education is the ultimate cornerstone of a thriving and just society. Our mission is to cultivate minds that are not only academically proficient but deeply rooted in integrity and discipline.",
       "We are dedicated to providing a dynamic learning environment where future leaders can confidently hone their skills. With our exceptional faculty, rigorous academic standards, and modern infrastructure, we ensure that every student is equipped to navigate the complexities of the modern legal profession.",
+      "Furthermore, as the legal landscape evolves with new technologies and globalised frameworks, we are constantly upgrading our curriculum. We want our graduates to not just participate in the legal system, but to lead it.",
       "We aim to empower you to seek justice, uphold the truth, and lead with purpose. Your journey towards becoming a distinguished legal professional starts here, and we are committed to supporting you every step of the way."
     ],
   },
@@ -80,8 +79,9 @@ const LEADERSHIP = [
     heading: "From The Manager's Desk",
     quote: [
       "Law is much more than a career path; it is a profound societal responsibility. At Shree Ram Law College, we aim to nurture individuals who view their legal education as a powerful instrument for positive community change.",
-      "We focus on bridging the gap between theoretical knowledge and practical execution, ensuring our students are truly prepared for the real-world challenges of the judicial system. Our unwavering commitment is to foster an inclusive, disciplined, and forward-thinking campus culture.",
-      "When you step into our college, you are stepping into a future where your knowledge and voice can champion the rights of the unheard."
+      "We focus on bridging the gap between theoretical knowledge and practical execution, ensuring our students are truly prepared for the real-world challenges of the judicial system.",
+      "Beyond academics, we place a strong emphasis on the holistic development of our students. Through debates, seminars, and legal aid camps, we encourage an environment where confidence and character are built simultaneously.",
+      "When you step into our college, you are stepping into a future where your knowledge and voice can champion the rights of the unheard. I welcome you to join our vibrant academic family."
     ],
   },
   {
@@ -92,11 +92,58 @@ const LEADERSHIP = [
     heading: "From The Principal's Desk",
     quote: [
       "As the Principal of Shree Ram Law College, it is my privilege to guide our students through a rigorous, comprehensive, and transformative academic curriculum.",
-      "We place a strong emphasis on critical analysis, extensive legal research, and the practical application of constitutional principles. Our core goal is to demystify complex legal frameworks and teach our students how to effectively use the law as a shield for the vulnerable.",
+      "We place a strong emphasis on critical analysis, extensive legal research, and the practical application of constitutional principles. Our core goal is to demystify complex legal frameworks.",
+      "Our esteemed faculty brings decades of both academic excellence and courtroom experience into the classrooms. This ensures that our students learn the law not just as it exists in textbooks, but as it operates in society.",
       "We are committed to shaping not just highly competent lawyers, but ethical advocates who will uphold the dignity of the legal system, challenge injustices, and serve our nation with unwavering pride."
     ],
   },
 ];
+
+function LeadershipCard({ p }: { p: typeof LEADERSHIP[0] }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const visibleQuotes = isExpanded ? p.quote : p.quote.slice(0, 2);
+
+  return (
+    <div className="bg-white rounded-[1.5rem] shadow-sm border border-gray-100 p-8 md:p-10 flex flex-col md:flex-row gap-8 lg:gap-14 transition hover:shadow-md">
+      <div className="flex flex-col items-center w-full md:w-[320px] shrink-0">
+        <div className="rounded-2xl border-[3px] border-[#ff7a00] p-1 mb-5 overflow-hidden w-full max-w-[280px]">
+          <img
+            src={p.photo}
+            alt={p.name}
+            loading="lazy"
+            className="w-full aspect-square object-cover object-top rounded-xl bg-gray-100"
+          />
+        </div>
+        <h4 className="text-[#990000] font-bold text-[1.1rem] text-center leading-snug">
+          {p.name}
+        </h4>
+        <p className="text-gray-500 text-sm text-center mt-1.5">{p.role}</p>
+      </div>
+      <div className="flex-1 flex flex-col justify-center">
+        <div className="text-[#ff7a00] text-xs font-extrabold uppercase tracking-widest mb-3">
+          {p.eyebrow}
+        </div>
+        <h3 className="text-[#0b132b] text-3xl md:text-4xl font-bold mb-6 tracking-tight">
+          {p.heading}
+        </h3>
+        <div className="text-gray-600 text-[15px] leading-[1.8] space-y-4">
+          {visibleQuotes.map((paragraph, i) => (
+            <p key={i} className="animate-in fade-in duration-500">{paragraph}</p>
+          ))}
+        </div>
+        <div className="mt-8">
+          <button 
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="inline-flex items-center gap-2 text-sm font-semibold text-[#db4a4a] border-2 border-[#db4a4a]/30 rounded-full px-6 py-2.5 hover:bg-[#db4a4a] hover:text-white transition-all duration-300"
+          >
+            {isExpanded ? "Read Less" : "Read More"} 
+            <ChevronDown size={16} className={`transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`} />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function Home() {
   const [form, setForm] = useState({ name: "", phone: "", message: "" });
@@ -109,13 +156,9 @@ function Home() {
 
   return (
     <>
-      {/* HERO SLIDER */}
       <HeroSlider />
-
-      {/* NOTICES TICKER */}
       <NoticesTicker />
 
-      {/* MARQUEE / AFFILIATIONS */}
       <section className="border-y border-border bg-secondary/60">
         <div className="container-page flex flex-wrap items-center justify-center gap-x-10 gap-y-3 py-5 text-center text-sm font-medium text-navy/80">
           <span className="inline-flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-gold" /> Approved by Bar Council of India</span>
@@ -126,7 +169,6 @@ function Home() {
         </div>
       </section>
 
-      {/* WHY US */}
       <section className="section-padding">
         <div className="container-page">
           <SectionHeading
@@ -155,7 +197,6 @@ function Home() {
         </div>
       </section>
 
-      {/* LEADERSHIP MESSAGES */}
       <section className="bg-gray-50/50 section-padding py-16">
         <div className="container-page max-w-6xl mx-auto">
           <SectionHeading
@@ -166,52 +207,12 @@ function Home() {
           />
           <div className="mt-14 space-y-10">
             {LEADERSHIP.map((p) => (
-              <div
-                key={p.name}
-                className="bg-white rounded-[1.5rem] shadow-sm border border-gray-100 p-8 md:p-10 flex flex-col md:flex-row gap-8 lg:gap-12 transition hover:shadow-md"
-              >
-                {/* Left Column: Photo & Name */}
-                <div className="flex flex-col items-center w-full md:w-[260px] shrink-0">
-                  <div className="rounded-2xl border-[3px] border-[#ff7a00] p-1 mb-5 overflow-hidden w-full max-w-[220px]">
-                    <img
-                      src={p.photo}
-                      alt={p.name}
-                      loading="lazy"
-                      className="w-full aspect-square object-cover object-top rounded-xl bg-gray-100"
-                    />
-                  </div>
-                  <h4 className="text-[#990000] font-bold text-[1.1rem] text-center leading-snug">
-                    {p.name}
-                  </h4>
-                  <p className="text-gray-500 text-sm text-center mt-1.5">{p.role}</p>
-                </div>
-
-                {/* Right Column: Message Content */}
-                <div className="flex-1 flex flex-col justify-center">
-                  <div className="text-[#ff7a00] text-xs font-extrabold uppercase tracking-widest mb-3">
-                    {p.eyebrow}
-                  </div>
-                  <h3 className="text-[#0b132b] text-3xl md:text-4xl font-bold mb-6 tracking-tight">
-                    {p.heading}
-                  </h3>
-                  <div className="text-gray-600 text-[15px] leading-[1.8] space-y-3">
-                    {p.quote.map((paragraph, i) => (
-                      <p key={i}>{paragraph}</p>
-                    ))}
-                  </div>
-                  <div className="mt-8">
-                    <button className="inline-flex items-center gap-1.5 text-sm font-medium text-[#db4a4a] border border-[#db4a4a]/40 rounded-full px-5 py-2 hover:bg-red-50 hover:border-[#db4a4a] transition-all duration-200">
-                      Read More <ChevronDown size={16} />
-                    </button>
-                  </div>
-                </div>
-              </div>
+              <LeadershipCard key={p.name} p={p} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* COURSES */}
       <section className="section-padding">
         <div className="container-page">
           <SectionHeading
@@ -220,32 +221,33 @@ function Home() {
             title="Courses we offer"
             subtitle="Semester-based curricula aligned to the Bar Council of India and CSJM University, Kanpur."
           />
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <div className="mt-14 flex flex-col md:flex-row justify-center gap-8 max-w-4xl mx-auto">
             {courses.map((c) => (
               <Link
                 key={c.title}
                 to={c.to}
-                className="group flex flex-col rounded-xl border border-border bg-card p-7 transition hover:-translate-y-0.5 hover:border-navy hover:shadow-elegant"
+                className="group relative flex w-full md:w-1/2 flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white p-8 md:p-10 transition-all duration-300 hover:-translate-y-1 hover:border-[#ff7a00] hover:shadow-[0_0_25px_rgba(255,122,0,0.15)]"
               >
-                <span className="w-fit rounded-full bg-secondary px-3 py-1 text-[11px] font-semibold uppercase tracking-widest text-navy">
+                <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-[#ff7a00] to-[#ff5000] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <span className="w-fit rounded-full bg-orange-50 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-widest text-[#ff7a00]">
                   {c.tag}
                 </span>
-                <h3 className="mt-4 font-serif text-2xl font-bold text-navy">
+                <h3 className="mt-5 font-serif text-2xl font-bold text-[#0b132b]">
                   {c.title}
                 </h3>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-4 flex-1 text-[15px] leading-relaxed text-gray-600">
                   {c.text}
                 </p>
-                <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-navy transition group-hover:gap-3 group-hover:text-gold">
-                  Read more <ArrowRight className="h-4 w-4" />
-                </span>
+                <div className="mt-8 flex items-center gap-2 text-sm font-bold text-[#0b132b] transition-colors duration-300 group-hover:text-[#ff7a00]">
+                  Read more 
+                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" />
+                </div>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CAMPUS LIFE */}
       <section className="bg-navy text-navy-foreground section-padding">
         <div className="container-page grid items-center gap-10 lg:grid-cols-2">
           <div>
@@ -277,7 +279,6 @@ function Home() {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="section-padding">
         <div className="container-page">
           <div className="relative overflow-hidden rounded-2xl border border-gold/40 bg-gradient-to-br from-secondary to-background p-8 shadow-elegant sm:p-12">
@@ -310,7 +311,6 @@ function Home() {
         </div>
       </section>
 
-      {/* CONTACT SECTION */}
       <section id="contact-section" className="section-padding bg-secondary/30">
         <div className="container-page">
           <SectionHeading
@@ -409,7 +409,6 @@ function Home() {
         </div>
       </section>
 
-      {/* MAP SECTION */}
       <section className="pb-20 bg-secondary/30">
         <div className="container-page">
           <div className="overflow-hidden rounded-2xl border border-border shadow-elegant">

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import hero from "./../assets/college-photo.jpg";
 import moot from "./../assets/moot-court.jpg";
-import students from "./../assets/students.jpg";
+import students from "./../assets/collegeimage.jpeg";
 import books from "./../assets/law-books.jpg";
 
 const SLIDES = [
@@ -11,6 +11,7 @@ const SLIDES = [
     eyebrow: "College Code: KN136",
     title: "Shree Ram Law College",
     text: "Approved by Bar Council of India · Affiliated to C.S.J.M. University, Kanpur.",
+    imgClass: "object-cover object-center",
   },
   {
     img: moot,
@@ -21,7 +22,7 @@ const SLIDES = [
   {
     img: students,
     eyebrow: "Admissions Open 2025-26",
-    title: "Learn Law With Purpose",
+    title: "Learn Law ",
     text: "LL.B (3 Year) and B.A. LL.B (5 Year Integrated) programmes with 100% result track record.",
   },
   {
@@ -55,11 +56,12 @@ export function HeroSlider() {
             }
             aria-hidden={idx !== i}
           >
-            <img
-              src={s.img}
-              alt={s.title}
-              className="absolute inset-0 h-full w-full object-cover"
-            />
+           <img
+            src={s.img}
+            alt={s.title}
+            // This says: "Use the custom class if it exists, otherwise use the normal object-cover"
+            className={`absolute inset-0 h-full w-full ${s.imgClass || "object-cover"}`}
+          /> 
             <div className="absolute inset-0 bg-gradient-to-br from-navy/90 via-navy/75 to-navy/60" />
             <div className="container-page relative flex h-full items-center">
               <div className="max-w-2xl text-navy-foreground animate-fade-in">

@@ -66,7 +66,12 @@ export function SiteHeader() {
       {/* 2. COLLEGE HEADER */}
       <div className="container-page flex flex-wrap items-center justify-between gap-4 py-3 md:py-4 border-b-4 border-red-700">
         <Link to="/" className="flex items-center gap-5">
-          <img src={crest} alt="College Crest" className="h-20 w-20 md:h-24 md:w-24 rounded-full" />
+         {/* NEW CODE */}
+     <img 
+  src={crest} 
+  alt="College Crest" 
+  className="-ml-4 h-28 w-28 md:h-36 md:w-36 lg:h-40 lg:w-40 rounded-full object-contain" 
+/>
           <div className="flex flex-col justify-center">
             <h1 className="text-2xl md:text-4xl font-extrabold text-[#990000]">
               Shree Ram Law College
@@ -117,37 +122,21 @@ export function SiteHeader() {
                 </Link>
               ))}
 
-              {/* Login Dropdown */}
-              <div ref={ref} className="relative ml-2 flex items-center">
-                <button
-                  onClick={() => setLoginOpen(!loginOpen)}
-                  className="flex items-center gap-1 px-4 py-4 text-sm font-bold uppercase tracking-wider hover:text-yellow-400 transition-colors"
+                        {/* ERP Portal Login Link */}
+              <div className="relative ml-2 flex items-center">
+                <a
+                  href="https://erp.shreeramlawcollege.in/site/userlogin"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open ERP Portal Login in a new tab"
+                  className="flex items-center gap-2 px-4 py-4 text-sm font-bold uppercase tracking-wider hover:text-yellow-400 transition-colors"
                 >
                   <LogIn size={16} />
                   Login
-                  <ChevronDown size={14} className={`transition-transform duration-200 ${loginOpen ? "rotate-180" : ""}`} />
-                </button>
-
-                {loginOpen && (
-                  <div className="absolute top-[100%] right-0 w-52 rounded-b-lg border border-t-0 bg-white shadow-xl text-gray-800 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
-                    <Link
-                      to="/login/student"
-                      className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 font-medium transition-colors"
-                    >
-                      <GraduationCap size={18} />
-                      Student Login
-                    </Link>
-                    <Link
-                      to="/login/teacher"
-                      className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 font-medium transition-colors"
-                    >
-                      <ShieldCheck size={18} />
-                      Teacher Login
-                    </Link>
-                  </div>
-                )}
-              </div>
+                </a>
+              </div>              
             </div>
+
 
             {/* Right Side Phone Button */}
             <div className="ml-4 flex items-center py-2">
@@ -186,23 +175,31 @@ export function SiteHeader() {
               </Link>
             ))}
 
-            <Link
-              to="/login/student"
-              onClick={() => setOpen(false)}
-              className="px-5 py-4 border-b font-medium hover:bg-gray-50 flex items-center gap-2 transition-colors"
-            >
-              <GraduationCap size={18}/>
-              Student Login
-            </Link>
+            
 
-            <Link
-              to="/login/teacher"
-              onClick={() => setOpen(false)}
-              className="px-5 py-4 border-b font-medium hover:bg-gray-50 flex items-center gap-2 transition-colors"
+            {/* ERP Portal Login Link */}
+            <a
+              href="https://erp.shreeramlawcollege.in/site/userlogin"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open ERP Portal Login in a new tab"
+              className="px-5 py-4 border-b font-medium hover:bg-gray-50 transition-colors flex items-center gap-2"
             >
-              <ShieldCheck size={18}/>
-              Teacher Login
-            </Link>
+              <LogIn size={16} />
+              Login
+            </a>
+
+            {/* Right Side Phone Button */}
+            <a
+              href="tel:9415067926"
+              className="px-5 py-4 border-b font-medium hover:bg-gray-50 transition-colors flex items-center gap-2"
+            >
+              <Phone size={16} />
+              9415067926
+            </a>
+
+
+            
 
             {/* Responsive Hover Admission Button (Mobile) */}
             <Link

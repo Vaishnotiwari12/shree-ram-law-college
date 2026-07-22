@@ -72,12 +72,6 @@ export function SiteFooter() {
               <Globe className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
               <span>{SITE.website}</span>
             </li>
-
-            <li>  
-            <a href="https://pinweb.in/" target="_blank" rel="noopener noreferrer" className="text-navy-foreground/80 transition hover:text-gold">
-            Developed by Pinweb Pvt. Ltd Kanpur
-            </a>
-            </li>
           </ul>
         </div>
       </div>
@@ -85,7 +79,14 @@ export function SiteFooter() {
       <div className="border-t border-white/10">
         <div className="container-page flex flex-col items-center justify-between gap-2 py-5 text-xs text-navy-foreground/60 sm:flex-row">
           <span>© {new Date().getFullYear()} {SITE.name}. All rights reserved.</span>
-          <span>Approved by Bar Council of India • Affiliated to CSJM University, Kanpur</span>   
+          <span>Approved by Bar Council of India • Affiliated to CSJM University, Kanpur</span> 
+           
+
+            <li>  
+            <a href="https://pinweb.in/" target="_blank" rel="noopener noreferrer" className="text-navy-foreground/80 transition hover:text-gold">
+            Developed by Pinweb Pvt. Ltd Kanpur
+            </a>
+            </li>  
         </div>
       </div>
     </footer>

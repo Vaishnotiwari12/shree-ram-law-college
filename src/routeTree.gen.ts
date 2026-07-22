@@ -19,8 +19,6 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AdmissionsRouteImport } from './routes/admissions'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as LoginTeacherRouteImport } from './routes/login.teacher'
-import { Route as LoginStudentRouteImport } from './routes/login.student'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -72,16 +70,6 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LoginTeacherRoute = LoginTeacherRouteImport.update({
-  id: '/login/teacher',
-  path: '/login/teacher',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LoginStudentRoute = LoginStudentRouteImport.update({
-  id: '/login/student',
-  path: '/login/student',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -94,8 +82,6 @@ export interface FileRoutesByFullPath {
   '/gallery': typeof GalleryRoute
   '/notices': typeof NoticesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/login/student': typeof LoginStudentRoute
-  '/login/teacher': typeof LoginTeacherRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -108,8 +94,6 @@ export interface FileRoutesByTo {
   '/gallery': typeof GalleryRoute
   '/notices': typeof NoticesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/login/student': typeof LoginStudentRoute
-  '/login/teacher': typeof LoginTeacherRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -123,8 +107,6 @@ export interface FileRoutesById {
   '/gallery': typeof GalleryRoute
   '/notices': typeof NoticesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/login/student': typeof LoginStudentRoute
-  '/login/teacher': typeof LoginTeacherRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -139,8 +121,6 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/notices'
     | '/sitemap.xml'
-    | '/login/student'
-    | '/login/teacher'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -153,8 +133,6 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/notices'
     | '/sitemap.xml'
-    | '/login/student'
-    | '/login/teacher'
   id:
     | '__root__'
     | '/'
@@ -167,8 +145,6 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/notices'
     | '/sitemap.xml'
-    | '/login/student'
-    | '/login/teacher'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -182,8 +158,6 @@ export interface RootRouteChildren {
   GalleryRoute: typeof GalleryRoute
   NoticesRoute: typeof NoticesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
-  LoginStudentRoute: typeof LoginStudentRoute
-  LoginTeacherRoute: typeof LoginTeacherRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -258,20 +232,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/login/teacher': {
-      id: '/login/teacher'
-      path: '/login/teacher'
-      fullPath: '/login/teacher'
-      preLoaderRoute: typeof LoginTeacherRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/login/student': {
-      id: '/login/student'
-      path: '/login/student'
-      fullPath: '/login/student'
-      preLoaderRoute: typeof LoginStudentRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
@@ -286,8 +246,6 @@ const rootRouteChildren: RootRouteChildren = {
   GalleryRoute: GalleryRoute,
   NoticesRoute: NoticesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
-  LoginStudentRoute: LoginStudentRoute,
-  LoginTeacherRoute: LoginTeacherRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
